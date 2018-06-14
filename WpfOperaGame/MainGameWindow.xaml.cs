@@ -24,10 +24,9 @@ namespace WpfOperaGame
         public MainGameWindow()
         {
             InitializeComponent();
-            DataContext = this;
         }
 
-
+        TestObject t = new TestObject();
         private DateTime _gameDate = DateTime.Now;
         public DateTime gameDate
         {
@@ -58,14 +57,8 @@ namespace WpfOperaGame
 
         
 
-        TestObject t = new TestObject();
-
         
 
-
-
-      
-        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -74,8 +67,8 @@ namespace WpfOperaGame
 
         private void PopulateFields()
         {
-            t.Name = "Initial Name";
-            theLabel.DataContext = t;
+             t.Name = "Initial Name";
+//            theLabel.DataContext = t;
 
         }
 
