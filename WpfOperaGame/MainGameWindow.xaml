@@ -6,11 +6,14 @@
         xmlns:local="clr-namespace:WpfOperaGame"
         mc:Ignorable="d"
         Title="MainGameWindow" Height="450" Width="800" Loaded="Window_Loaded"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        
         >
+    <!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
     
-    <Grid>
-        <Label x:Name="gameTimeLabel" Content="{Binding Path=gameDate, StringFormat=MM-dd-yyyy}" HorizontalAlignment="Right" VerticalAlignment="Top" />
-
+    <Grid x:Name="testGrid">
+        <Label Name="gameTimeLabel" Content="{Binding gameDate}" HorizontalAlignment="Right" VerticalAlignment="Top" />
+        <Label Name="theLabel" Content="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="Click Me" Click="Button_Click" Margin="310,241,332,129"/>
+        <Button Content="Click Me Later" Click="Button_Click_1" Margin="310,291,332,79"/>
     </Grid>
 </Window>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,14 +19,50 @@ namespace WpfOperaGame
     /// <summary>
     /// Interaction logic for MainGameWindow.xaml
     /// </summary>
-    public partial class MainGameWindow : Window
+    public partial class MainGameWindow : Window, INotifyPropertyChanged
     {
-        public DateTime gameDate { get; set; } = DateTime.Now;
-
         public MainGameWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
+
+
+        private DateTime _gameDate = DateTime.Now;
+        public DateTime gameDate
+        {
+            get
+            {
+                return _gameDate;
+            }
+
+            set
+            {
+                _gameDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                var e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
+        }
+
+
+        
+
+        TestObject t = new TestObject();
+
+        
+
+
 
       
         
@@ -36,7 +74,23 @@ namespace WpfOperaGame
 
         private void PopulateFields()
         {
-            gameDate = DateTime.Now;
+            t.Name = "Initial Name";
+            theLabel.DataContext = t;
+
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            t.Name = "foo";
+            gameDate = gameDate.AddDays(45);
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            t.Name = "bar";
+        }
+
+
+
+        
     }
 }
